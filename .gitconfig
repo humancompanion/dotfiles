@@ -1,35 +1,14 @@
 [alias]
-	c = commit -am
-	fpush = push --force
-	s = status
-	sclone = clone --depth=1
-	amend = commit --amend --all
-	hreset = reset --hard
-	co = checkout
-	df = diff --color --color-words --abbrev
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-	reup = rebase-update # depot_tools specific
-
-[core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
-
-[interactive]
-  # disabled until github.com/so-fancy/diff-so-fancy/pull/172 is resolved :(
-	# diffFilter = "diff-so-fancy"
+[branch]
+	autosetuprebase = always
 
 # so much color
 [color]
 	ui = always
+
 [color "diff"]
 	meta = yellow bold
 	commit = green bold
@@ -37,57 +16,40 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = "red bold 52"
 	newNormal = "green bold"
 	newHighlight = "green bold 22"
+
 [color "branch"]
 	current = yellow reverse
 	local = yellow
 	remote = green
+
 [color "status"]
 	added = yellow
 	changed = green
 	untracked = cyan
 
-# git mergetool
-[merge]
-	tool = opendiff
-	renameLimit = 0
+[core]
+	quotepath = false
+	editor = atom --wait
 
-# rewrites of repo paths
-[url "git@github.com:"]
-	insteadOf = "https://github.com/"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
-	pushInsteadOf = "https://github.com/"
+[credential]
+	helper = osxkeychain
 
-[url "git://github.com/"]
-	insteadOf = "github:"
+[diff]
+	compactionHeuristic = true
+	tool = diffmerge
 
-[url "git@gist.github.com:"]
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-	
-[url "git://gist.github.com/"]
-	insteadOf = "gist:"
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 
-# correct typos
-[help]
-	autocorrect = 1
-
-# push easily. http://stackoverflow.com/a/23918418/89484
-[push]
-	default = current
-	followTags = true
-
-# use separate file for username / github token / etc
-[include]
-  path = ~/.gitconfig.local
-
-#[init]
-#	templatedir = ~/.git_template
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 
 [filter "lfs"]
 	clean = git-lfs clean %f
@@ -96,9 +58,38 @@
 
 [fetch]
 	prune = true
-[diff]
-	compactionHeuristic = true
+
+# correct typos
+[help]
+	autocorrect = 1
+
+# use separate file for username / github token / etc
+[include]
+  path = ~/.gitconfig.local
+
+[merge]
+	tool = diffmerge
+
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\";       then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
+
+[mergetool]
+	keepBackup = true
+
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+
+[push]
+	default = simple
+
 [remote "origin"]
 	fetch = +refs/heads/*:refs/remotes/origin/*
+
 [stash]
 	showPatch = true
+
+[url "https://"]
+	insteadOf = git://
