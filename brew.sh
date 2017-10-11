@@ -70,12 +70,14 @@ brew install ffmpeg --with-libvpx
 
 brew install terminal-notifier
 
-brew install android-platform-tools
+# brew install android-platform-tools
 brew install pidcat   # colored logcat guy
 
 brew install ncdu # find where your diskspace went
 
 brew install zsh
+
+brew install keychain
 
 # Remove outdated versions from the cellar
 brew cleanup

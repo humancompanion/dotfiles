@@ -34,8 +34,9 @@
 	untracked = cyan
 
 [core]
-	quotepath = false
 	editor = atom --wait
+	pager = less -R
+	quotepath = false
 
 [credential]
 	helper = osxkeychain
@@ -71,7 +72,7 @@
 	tool = diffmerge
 
 [mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\";       then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
 	trustExitCode = true
 
 [mergetool]
