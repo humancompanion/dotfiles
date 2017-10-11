@@ -7,10 +7,11 @@
 # git credential file
 .gitconfig.local
 
-
 # no thx
 node_modules
 .oh-my-zsh
+.atom
+.zsh_history
 
 # Folder view configuration files
 .DS_Store
