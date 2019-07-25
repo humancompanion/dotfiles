@@ -1,0 +1,60 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "6f9becf6-1f64-49c1-a8a8-fc7d82ad0b91"
+    html:
+      beautify_on_save: true
+    js:
+      disabled: true
+    json:
+      disabled: true
+    markdown:
+      beautify_on_save: true
+    sass:
+      disabled: true
+    scss:
+      disabled: true
+    xml:
+      disabled: true
+    yaml:
+      disabled: true
+  core:
+    disabledPackages: [
+      "vim-mode"
+      "atom-beautify"
+      "atom-typescript"
+      "prettier-atom"
+      "markdown-preview"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "atom-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  editor:
+    fontSize: 16
+    softWrap: true
+  "exception-reporting":
+    userId: "39f373f7-6e13-9e11-af96-a1f0656ed5d1"
+  "linter-ui-default": {}
+  "markdown-preview":
+    useGitHubStyle: true
+  "markdown-preview-plus":
+    useGitHubStyle: true
+  "prettier-atom":
+    formatOnSaveOptions:
+      showInStatusBar: true
+  "spell-check":
+    grammars: [
+      "text.html.jekyll"
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "source.rst"
+      "text.restructuredtext"
+    ]
+  "vim-mode-plus": {}
+  welcome:
+    showOnStartup: false

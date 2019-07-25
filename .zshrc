@@ -54,7 +54,7 @@ plugins=(autojump brew common-aliases git git-flow npm osx ruby rbenv ssh-agent 
 # ------------------------------------------------------------------
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -74,11 +74,11 @@ fi
 
 # ------------------------------------------------------------------
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id_usds"
 
 # ------------------------------------------------------------------
 # env
-export EMAIL="Matthew Dingee <matthew.dingee@opm.gov>"
+export EMAIL="Matthew Dingee <matthew.j.dingee@omb.eop.gov>"
 # export EDITOR="/usr/local/bin/subl -n -w"
 export PAGER=less
 export LESS='-x4'
@@ -99,6 +99,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export NODE_PATH=/usr/local/lib/node_modules:/usr/local/share/node_modules
 export JS_CMD=node
 
+# ------------------------------------------------------------------
+# Java - bleh
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -117,3 +121,6 @@ alias chrome="open -a 'Google Chrome' --args --allow-file-access-from-files"
 
 setopt INTERACTIVE_COMMENTS
 setopt rmstarsilent
+
+# added by travis gem
+[ -f /Users/matthew/.travis/travis.sh ] && source /Users/matthew/.travis/travis.sh

@@ -53,9 +53,10 @@
 	smudge = git-media-smudge %f
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 
 [fetch]
 	prune = true
@@ -85,12 +86,10 @@
 
 [push]
 	default = simple
-
-[remote "origin"]
-	fetch = +refs/heads/*:refs/remotes/origin/*
-
 [stash]
 	showPatch = true
 
 [url "https://"]
 	insteadOf = git://
+[user]
+	email = matthew.j.dingee@omb.eop.com
