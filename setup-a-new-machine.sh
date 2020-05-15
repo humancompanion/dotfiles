@@ -19,7 +19,7 @@ cd ~/migration
 brew leaves              > brew-list.txt    # all top-level brew installs
 brew cask list           > cask-list.txt
 npm list -g --depth=0    > npm-g-list.txt
-yarn global ls --depth=0 > yarn-g-list.txt
+yarn global list --depth=0 > yarn-g-list.txt
 
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
@@ -149,6 +149,9 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 # the `push` command which copies the github compare URL to my clipboard is heaven
 bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
+# autocompletion for git branch names https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+
 
 # Type `git open` to open the GitHub page or website for a repository.
 npm install -g git-open
@@ -161,6 +164,9 @@ npm install -g diff-so-fancy
 
 # trash as the safe `rm` alternative
 npm install --global trash-cli
+
+# more readable git diffs
+npm install --global diff-so-fancy
 
 # install better nanorc config
 # https://github.com/scopatz/nanorc
@@ -205,26 +211,44 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # setting up the sublime symlink
 ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
+# install nvm (Node Version Nanager, https://github.com/nvm-sh/nvm)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
 
 ###
 ##############################################################################################################
 
 
+## Chromium hacking
 
 # improve perf of git inside of chromium checkout
-# https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
+
+# read https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
 
 # default is (257*1024)
 sudo sysctl kern.maxvnodes=$((512*1024))
-
 echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
+
+# https://facebook.github.io/watchman/docs/install.html#mac-os-file-descriptor-limits
+sudo sysctl -w kern.maxfiles=$((10*1024*1024))
+sudo sysctl -w kern.maxfilesperproc=$((1024*1024))
+echo kern.maxfiles=$((10*1024*1024)) | sudo tee -a /etc/sysctl.conf
+echo kern.maxfilesperproc=$((1024*1024)) | sudo tee -a /etc/sysctl.conf
+
 
 # speed up git status (to run only in chromium repo)
 git config status.showuntrackedfiles no
 git update-index --untracked-cache
 
+# faster git server communication.
+# like a LOT faster. https://opensource.googleblog.com/2018/05/introducing-git-protocol-version-2.html
+git config protocol.version 2
+
+# see also "A Chromium Compiling Setup for DevTools Hackers"
+# https://gist.github.com/paulirish/2d84a6db1b41b4020685
+
 # also this unrelated thing
-git config user.email "paulirish@chromium.org"
+# git config user.email "xxxx@chromium.org"
 
 
 ##############################################################################################################

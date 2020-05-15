@@ -26,12 +26,10 @@ end
 set -l paths "
 # yarn binary
 $HOME/.yarn/bin
+$GOPATH/bin
 
 # yarn global modules (hack for me)
-$HOME/.homebrew/Cellar/node/7.10.0/bin
-$HOME/.homebrew/Cellar/node/7.7.1_1/bin
-$HOME/.homebrew/Cellar/node/7.7.4/bin
-$HOME/.homebrew/Cellar/node/8.0.0_1/bin
+$HOME/.config/yarn/global/node_modules/.bin
 "
 
 for entry in (string split \n $paths)
@@ -41,6 +39,12 @@ for entry in (string split \n $paths)
         set PA $PA "$resolved_path"
     end
 end
+
+# GO
+set PA $PA "/Users/paulirish/.go/bin"
+
+# `code` binary from VS Code insiders
+set PA $PA "/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin"
 
 
 # Google Cloud SDK.

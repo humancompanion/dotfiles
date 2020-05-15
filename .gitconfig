@@ -1,13 +1,42 @@
 [alias]
+	amend = commit --amend --all
+	undocommit = reset HEAD~
+	hreset = reset --hard
+
+	df = diff --color --color-words --abbrev
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	cherrypick = cherry-pick
+	cherry = cherry-pick
+	cp = cherry-pick
+
+	# show commit log of unique commits of this branch (not on master)
+	diffcommitsfrommaster = log --no-merges master..
+	# show unified diff of unique commits of this branch
+	difffrommaster = diff master...
+	# ^^^^ Holy crap two dots vs three dots, so important. https://stackoverflow.com/a/48681527
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 [branch]
 	autosetuprebase = always
 
+
+[core]
+	editor = code --wait
+	quotepath = false
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	precomposeUnicode = true
+
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+
 # so much color
 [color]
-	ui = always
+	ui = auto
 
 [color "diff"]
 	meta = yellow bold
@@ -16,27 +45,21 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-
+    newMoved = cyan
+    oldMoved = blue
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = "red bold 52"
 	newNormal = "green bold"
 	newHighlight = "green bold 22"
-
 [color "branch"]
 	current = yellow reverse
 	local = yellow
 	remote = green
-
 [color "status"]
 	added = yellow
 	changed = green
 	untracked = cyan
-
-[core]
-	editor = atom --wait
-	pager = less -R
-	quotepath = false
 
 [credential]
 	helper = osxkeychain
@@ -61,6 +84,16 @@
 [fetch]
 	prune = true
 
+# git mergetool
+[merge]
+	tool = opendiff
+	renameLimit = 0
+
+
+	
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
+
 # correct typos
 [help]
 	autocorrect = 1
@@ -69,27 +102,25 @@
 [include]
   path = ~/.gitconfig.local
 
-[merge]
-	tool = diffmerge
-
-[mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
-
-[mergetool]
-	keepBackup = true
-
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
-
-[push]
-	default = simple
 [stash]
 	showPatch = true
 
 [url "https://"]
 	insteadOf = git://
+
 [user]
-	email = matthew.j.dingee@omb.eop.com
+	email = matthew.j.dingee@omb.eop.gov
+
+[fetch]
+	prune = true
+
+[diff]
+    # Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
+    # https://blog.github.com/2018-04-05-git-217-released/
+    colorMoved = zebra
+
+[stash]
+	showPatch = true
+
+[log]
+	date = relative

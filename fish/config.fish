@@ -1,11 +1,13 @@
 set default_user "paulirish"
 set default_machine "paulirish-macbookair2"
 
+
 source ~/.config/fish/path.fish
 source ~/.config/fish/aliases.fish
 source ~/.config/fish/chpwd.fish
 source ~/.config/fish/functions.fish
 source ~/.config/fish/chromium.fish
+source ~/.config/fish/conf.d/scmpuff.fish
 
 # for things not checked into git..
 if test -e "$HOME/.extra.fish";
@@ -13,7 +15,9 @@ if test -e "$HOME/.extra.fish";
 end
 
 # THEME PURE #
-set fish_function_path $HOME/.config/fish/functions/pure $fish_function_path
+set fish_function_path $HOME/.config/fish/functions/pure/functions/ $fish_function_path
+set fish_function_path $HOME/.config/fish/functions/pure/ $fish_function_path
+source $HOME/.config/fish/functions/pure/conf.d/pure.fish
 
 export GOPATH=$HOME/.go/
 
@@ -61,6 +65,13 @@ set -g __fish_git_prompt_showdirtystate 'yes'
 set -g __fish_git_prompt_showupstream auto
 set -g pure_git_untracked_dirty false
 
+# pure
+set pure_threshold_command_duration 1
+set pure_separate_prompt_on_error true
+set pure_begin_prompt_with_current_directory false
+set -U pure_color_success (set_color green)
+set -U pure_color_git_dirty (set_color cyan)
+
 # Status Chars
 #set __fish_git_prompt_char_dirtystate '*'
 set __fish_git_prompt_char_upstream_equal ''
@@ -97,4 +108,7 @@ set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
-[ -f $HOME/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish ]; and . $HOME/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish
+[ -f /Users/paulirish/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish ]; and . /Users/paulirish/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish
+
+# rvm default
+
