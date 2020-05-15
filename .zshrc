@@ -124,3 +124,6 @@ setopt rmstarsilent
 
 # added by travis gem
 [ -f /Users/matthew/.travis/travis.sh ] && source /Users/matthew/.travis/travis.sh
+
+ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs#h

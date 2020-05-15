@@ -45,8 +45,8 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-    newMoved = cyan
-    oldMoved = blue
+        newMoved = cyan
+        oldMoved = blue
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = "red bold 52"
@@ -65,15 +65,18 @@
 	helper = osxkeychain
 
 [diff]
-	compactionHeuristic = true
-	tool = diffmerge
+  compactionHeuristic = true
+  tool = diffmerge
+  # Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
+  # https://blog.github.com/2018-04-05-git-217-released/
+  colorMoved = zebra
 
 [difftool "diffmerge"]
-	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+  cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -88,7 +91,6 @@
 [merge]
 	tool = opendiff
 	renameLimit = 0
-
 
 	
 [url "git://gist.github.com/"]
@@ -105,22 +107,14 @@
 [stash]
 	showPatch = true
 
-[url "https://"]
-	insteadOf = git://
+# [url "https://"]
+# insteadOf = git://
 
 [user]
-	email = matthew.j.dingee@omb.eop.gov
-
-[fetch]
-	prune = true
-
-[diff]
-    # Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
-    # https://blog.github.com/2018-04-05-git-217-released/
-    colorMoved = zebra
+  email = matthew.j.dingee@omb.eop.gov
 
 [stash]
-	showPatch = true
+  showPatch = true
 
 [log]
-	date = relative
+  date = relative
