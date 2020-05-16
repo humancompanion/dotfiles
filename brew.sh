@@ -78,3 +78,8 @@ brew install wget
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+
+# npm install some global packages
+npm install -g diff-so-fancy
+npm install -g npm-check-updates
