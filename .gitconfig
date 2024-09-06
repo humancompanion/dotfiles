@@ -18,10 +18,6 @@
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-[branch]
-	autosetuprebase = always
-
-
 [core]
 	editor = code --wait
 	quotepath = false
@@ -111,10 +107,14 @@
 # insteadOf = git://
 
 [user]
-  email = matthew.j.dingee@omb.eop.gov
+	email = 52176351+humancompanion-usds@users.noreply.github.com
+	name = Matthew Dingee
 
 [stash]
   showPatch = true
 
 [log]
   date = relative
+
+[push]
+	autoSetupRemote = true
